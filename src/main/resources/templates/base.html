@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="common_header">
+        <title th:text="${title ?: 'Library Manager'}">Library Manager</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <!-- Common styles and scripts -->
+        <link rel="stylesheet" media="screen"
+            href="https://cdn.shoelace.style/1.0.0-beta24/shoelace.css"
+            th:href="@{/css/shoelace.css}" />
+        <!-- <link rel="shortcut icon" th:href="@{/images/favicon.ico}"> -->
+    </head>
+</html>
