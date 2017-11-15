@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="base ::common_header"></head>
-<body>
+<head th:include="base ::common_head">
+<meta charset="utf-8" />
+</head>
+<body>    
     <div class="container">
         <h2>Publishers</h2>
         <div th:if="${not #lists.isEmpty(publishers)}">
@@ -10,28 +12,19 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th># of Titles</th>
-                    <th>View</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th colspan="2">Actions</th>
                 </tr>
                 <tr th:each="publisher : ${publishers}">
                     <td th:text="${publisher.id}"></td>
                     <td th:text="${publisher.name}"></td>
                     <td th:text="${publisher.titles.size()}"></td>
-                    <td><a th:href="${'/publishers/' + publisher.id + '/'}">View</a></td>
-                    <td><a th:href="${'/publishers/edit/' + publisher.id}">Edit</a>
-                    </td>
-                    <td><a
-                        th:href="${'/publishers/delete/' + publisher.id}">Delete</a>
+                    <td><a th:href="|/publishers/${publisher.id}/|">Edit</a></td>
+                    <td><a th:href="|/publishers/${publisher.id}/delete/|">Delete</a>
                     </td>
                 </tr>
             </table>
         </div>
-        <div class="row">
-            <div class="col-sm-3">
-                <a href="/publishers/new">New Publisher</a>
-            </div>
-        </div>
+        <a href="/publishers/new/">New Publisher</a>
     </div>
 </body>
 </html>
