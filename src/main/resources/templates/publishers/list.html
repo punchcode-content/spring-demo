@@ -3,7 +3,7 @@
 <head th:include="base ::common_head">
 <meta charset="utf-8" />
 </head>
-<body>    
+<body>
     <div class="container">
         <h2>Publishers</h2>
         <div th:if="${not #lists.isEmpty(publishers)}">
@@ -26,5 +26,14 @@
         </div>
         <a href="/publishers/new/">New Publisher</a>
     </div>
+ 
+    <!--    
+        <div
+        th:replace=":: list(
+        ${publishers}, 
+        ${ {'Id', 'Name', '# of Titles'} }, 
+        ${ {'object.id', 'object.name', 'object.titles.size()'} },
+        '/publishers')"></div>
+    -->
 </body>
 </html>

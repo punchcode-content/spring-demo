@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head th:fragment="common_head">
-        <title th:text="${title ?: 'Library Manager'}">Library Manager</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <!-- Common styles and scripts -->
-        <link rel="stylesheet" media="screen"
-            href="https://cdn.shoelace.style/1.0.0-beta24/shoelace.css"
-            th:href="@{/css/shoelace.css}" />
-        <!-- <link rel="shortcut icon" th:href="@{/images/favicon.ico}"> -->
-    </head>
+<head th:fragment="common_head">
+<title th:text="${title ?: 'Library Manager'}">Library Manager</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- Common styles and scripts -->
+<link rel="stylesheet" media="screen"
+    href="https://cdn.shoelace.style/1.0.0-beta24/shoelace.css"
+    th:href="@{/css/shoelace.css}" />
+<!-- <link rel="shortcut icon" th:href="@{/images/favicon.ico}"> -->
+</head>
+<div th:fragment="list(collection, labels, fields, baseURL)">
+    <div th:if="${not #lists.isEmpty(collection)}">
+        <table class="table table-striped">
+            <tr>
+                <th th:each="label: ${labels}" th:text="${label}"></th>
+                <th colspan="2">Actions</th>
+            </tr>
+            <tr th:each="object : ${collection}">
+                <td th:each="field : ${fields}" th:text="${__${field}__}"></td>
+                <td><a th:href="|${baseURL}/${object.id}/|">Edit</a></td>
+                <td><a th:href="|${baseURL}/${object.id}/delete/|">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
 </html>
