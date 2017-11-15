@@ -29,7 +29,7 @@
  
     <!--    
         <div
-        th:replace=":: list(
+        th:replace="base :: list(
         ${publishers}, 
         ${ {'Id', 'Name', '# of Titles'} }, 
         ${ {'object.id', 'object.name', 'object.titles.size()'} },

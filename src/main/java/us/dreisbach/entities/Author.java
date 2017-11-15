@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,10 +17,10 @@ public class Author {
 	private Integer id;
 
 	@NotNull
-	@Size(max=255)
+	@Size(max = 255)
 	private String name;
-	
-	@ManyToMany(mappedBy="authors")
+
+	@ManyToMany(mappedBy = "authors")
 	private Set<Title> titles;
 
 	public Integer getId() {

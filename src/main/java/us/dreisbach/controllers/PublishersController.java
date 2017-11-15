@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import us.dreisbach.entities.Publisher;
 import us.dreisbach.services.PublisherService;
@@ -26,6 +27,13 @@ public class PublishersController {
 		return "publishers/list";
 	}
 
+	@RequestMapping("/test/")
+	@ResponseBody
+	public String test() {
+
+		return "This is a test";
+	}
+
 	@RequestMapping("/new/")
 	public String newPublisher(Model model) {
 		model.addAttribute("publisher", new Publisher());
@@ -34,14 +42,16 @@ public class PublishersController {
 
 	@RequestMapping(value = "/save/", method = RequestMethod.POST)
 	public String savePublisher(Publisher publisher, Model model) {
-		Publisher savedPublisher = publisherService.saveOrUpdate(publisher);
+		publisherService.saveOrUpdate(publisher);
 		return "redirect:/publishers/";
 	}
 
 	@RequestMapping("/{id}/")
-	public String showPublisher(@PathVariable Integer id, Model model) {
-		model.addAttribute("publisher", publisherService.getById(id));
-		return "publishers/form";
+	@ResponseBody
+	public Publisher showPublisher(@PathVariable Integer id, Model model) {
+		// model.addAttribute("publisher", publisherService.getById(id));
+		return publisherService.getById(id);
+		// return "publishers/form";
 	}
 
 	@RequestMapping("/{id}/delete")
